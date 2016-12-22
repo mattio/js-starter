@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "prestart": "babel-node buildscripts/startMessage.js",
-    "start": "npm-run-all --parallel security-check open-dev-server lint:watch test:watch",
+    "start": "npm-run-all --parallel security-check open-dev-server lint:watch test:watch start-mockapi",
     "open-dev-server": "babel-node buildscripts/srcServer.js",
     "lint": "esw webpack.config.* src buildscripts --color",
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter progress buildscripts/testSetup.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
+    "generate-mock-data": "babel-node buildscripts/generateMockData.js",
+    "prestart-mockapi": "npm run generate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000",
     "share": "npm-run-all --parallel open-dev-server localtunnel"
@@ -42,6 +45,8 @@
     "express": "^4.14.0",
     "html-webpack-plugin": "^2.24.1",
     "jsdom": "^9.8.3",
+    "json-schema-faker": "^0.4.0",
+    "json-server": "^0.9.4",
     "localtunnel": "^1.8.2",
     "mocha": "^3.2.0",
     "nock": "^9.0.2",
@@ -54,6 +59,7 @@
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.13.2",
-    "webpack-md5-hash": "0.0.5"
+    "webpack-md5-hash": "0.0.5",
+    "whatwg-fetch": "^2.0.1"
   }
 }
