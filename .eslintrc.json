@@ -1,0 +1,27 @@
+{
+  // Tells eslint this is the root, no higher up the folder chain.
+  "root": true,
+  // What preset rules we're following .
+  // Invalid imports have enhanced linting.
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  // Version of JS we're using and module types.
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  // Environments tell ESLint things like global variables to expect.
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  // Additional rules to override.
+  // 0 is off. 1 is warning. 2 is error.
+  "rules": {
+    "no-console": 1
+  }
+}
