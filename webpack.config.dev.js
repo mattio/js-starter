@@ -1,4 +1,5 @@
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 // Simple setup demonstrated.
 
@@ -24,7 +25,10 @@ export default {
     filename: 'bundle.js'
   },
   // Optional plugins, like hot reloading, linting styles, etc.
-  plugins: [],
+  plugins: [
+    // Create an HTML file with a reference to the bundle.
+    new HtmlWebpackPlugin({template: 'src/index.html', inject: true})
+  ],
   // Webpack loaders: file types we want Webpack to handle.
   // Here we're handling JS and CSS. Allows you to import CSS in JS modules.
   // There are alternate syntaxes to define this.
